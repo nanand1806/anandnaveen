@@ -41,7 +41,8 @@ Reach out via [LinkedIn](https://www.linkedin.com/in/anandnaveen/) or email.
 ## Writing
 I write practical DevOps and cloud content aimed at people starting out, with a "going deeper" layer for experienced engineers. Topics: AWS and Azure fundamentals, Terraform, CI/CD, and real-world troubleshooting.
 
-- Medium: _coming soon (link to be added)_
+- Medium: [@anandnaveen](https://medium.com/@anandnaveen)
+- Code that backs the writing: [devops-sre-observability](https://github.com/nanand1806/devops-sre-observability)
 - Topics I cover: DevOps fundamentals, Cloud (AWS/Azure), Terraform, SRE, FinOps
 
 ---
