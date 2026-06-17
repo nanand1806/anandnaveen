@@ -1,6 +1,6 @@
 # Hi, I'm Naveen Anand
 
-**DevOps & Cloud Leader | Freelance Cloud Solution Architect (Azure + AWS) | Writing DevOps for beginners**
+**DevOps & Cloud Leader | Cloud Solution Architect (Azure + AWS) | Writing DevOps for beginners**
 
 16+ years building scalable, secure, production-ready infrastructure. I currently lead a DevOps team at **Fortive (Intelex)**, where I own cloud engineering, infrastructure automation, CI/CD, and site reliability for our environments. Alongside that I work as a **freelance cloud solution architect across Azure and AWS**, designing landing zones and architectures for teams who need cloud done right the first time.
 
