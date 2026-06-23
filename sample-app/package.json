@@ -1,0 +1,12 @@
+{
+  "name": "anandnaveen-sbom-demo",
+  "version": "1.0.0",
+  "description": "Sample manifest so the SBOM pipeline catalogs real components",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "axios": "1.7.7",
+    "chalk": "4.1.2",
+    "lodash": "4.17.21"
+  }
+}
