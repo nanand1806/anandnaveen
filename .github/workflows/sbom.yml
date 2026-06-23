@@ -1,0 +1,52 @@
+name: SBOM
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+permissions:
+  contents: read
+  id-token: write   # keyless cosign signing via OIDC (no secrets)
+
+jobs:
+  sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Syft
+        uses: anchore/sbom-action/download-syft@v0.17.9
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3.7.0
+
+      - name: Generate SBOMs (SPDX + CycloneDX, JSON)
+        run: |
+          mkdir -p sbom
+          syft scan dir:. -o spdx-json=sbom/sbom.spdx.json
+          syft scan dir:. -o cyclonedx-json=sbom/sbom.cdx.json
+
+      - name: Human-readable Excel
+        run: |
+          python3 -m pip install --quiet openpyxl
+          python3 .github/scripts/sbom_to_xlsx.py sbom/sbom.cdx.json sbom/sbom.xlsx
+
+      - name: Sign SBOMs (keyless)
+        env:
+          COSIGN_YES: "true"
+        run: |
+          for f in sbom/sbom.spdx.json sbom/sbom.cdx.json; do
+            cosign sign-blob --yes "$f" \
+              --output-signature "${f}.sig" \
+              --output-certificate "${f}.pem"
+          done
+
+      - name: Upload SBOM artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom/
+          if-no-files-found: error
